@@ -5,6 +5,7 @@
 	
 	$r = new Range();
 	$s = new Scheme();
+	$t = new Timeframe();
 	
 	
 	require_once(INC_DIR.DS.'header.html');
@@ -15,6 +16,9 @@
 		
 		$db->query($s->drop_table());
 		$db->query($s->create_table());
+		
+		$db->query($t->drop_table());		
+		$db->query($t->create_table());
 ?>
 
 <div id='title'>Database Initialized.</div>
