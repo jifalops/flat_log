@@ -23,17 +23,13 @@ $db = new DatabaseHelper(   Internal::DB_HOST,      Internal::DB_USERNAME,
 // Create database tables if necessary (the DB itself and login credentials must be known ahead of time).							
 $r = new Range();
 $s = new Scheme();
-$t = new Timeframe();
 if (!$db->table_exists($r->table_name())) {
 	$db->query($r->create_table());
 }
 if (!$db->table_exists($s->table_name())) {
 	$db->query($s->create_table());
-}						
-if (!$db->table_exists($t->table_name())) {
-	$db->query($t->create_table());
-}					
-unset($r, $s, $t);
+}											
+unset($r, $s);
 												
 // Logging mechanism for developers. Attempts to be similar to Android's logging mechanism.
 $log = new Log(LOG_DIR.DS.'dev_log.txt');

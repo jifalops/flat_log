@@ -13,3 +13,6 @@ internal/
 .ftpquota
 error_log
 php_errors.log
+
+#log files
+log/

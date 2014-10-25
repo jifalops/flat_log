@@ -6,6 +6,7 @@ class Scheme extends DatabaseTable {
 		'node_id' 		 => 'char(17) NOT NULL',		
 		'algorithm'		 => 'varchar(20) NOT NULL',		
 		'node_time'		 => 'bigint NOT NULL',
+		'node_datetime'	 => 'varchar(50) NOT NULL',
 		'x'				 => 'double NOT NULL',
 		'y'				 => 'double NOT NULL',
 		'z'				 => 'double NOT NULL',

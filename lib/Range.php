@@ -1,6 +1,6 @@
 <?php
 class Range extends DatabaseTable {
-    function table_name() { return 'ranging'; }
+    	function table_name() { return 'ranging'; }
 	function fields() {
 		return array(
 		'node_id' 		 => 'char(17) NOT NULL',
@@ -9,6 +9,7 @@ class Range extends DatabaseTable {
 		'estimate'		 => 'double NOT NULL',
 		'actual'		 => 'double DEFAULT NULL',
 		'node_time'		 => 'bigint NOT NULL',
+		'node_datetime'	 => 'varchar(50) NOT NULL',
 		'db_time'		 => 'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP');
 	}
 	
