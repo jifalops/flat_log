@@ -21,7 +21,7 @@
 	
 	require_once(INC_DIR.DS.'header.html');
 	
-	echo '<h4>Things that need to be done:</h4>'.NL;
+	echo '<h4>To-do list:</h4>'.NL;
 	
 	echo '<table border="1">'.NL;
 	echo '<tr><th>File</th><th>Line #</th><th>Comment (first line)</th>'.NL;

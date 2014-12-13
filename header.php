@@ -22,7 +22,7 @@ $db = new DatabaseHelper(   Internal::DB_HOST,      Internal::DB_USERNAME,
 
 // Create database tables if necessary (the DB itself and login credentials must be known ahead of time).							
 $r = new Range();
-$s = new Scheme();
+$s = new State();
 if (!$db->table_exists($r->table_name())) {
 	$db->query($r->create_table());
 }
