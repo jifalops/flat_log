@@ -39,7 +39,7 @@
     	foreach ($fields as $field) {
     		if (!$first) $sql .= " OR ";
     		else $first = false;
-    		$sql .= "`$field` LIKE '%{$GLOBALS['search']}%'";
+    		$sql .= "`$field` LIKE '%".$GLOBALS['db']->escape($GLOBALS['search'])."%'";
     	}
     }
 
@@ -61,7 +61,7 @@
       foreach ($records as $record) {
         echo '<tr>'.NL;
         foreach ($record as $item) {
-          $item = str_replace($GLOBALS['search'], '<span class="search-result">'.$GLOBALS['search'].'</span>', $item);
+          $item = highlight($GLOBALS['search'], $item);
           echo '<td>'.$item.'</td>'.NL;
         }
         echo '</tr>'.NL;
@@ -69,6 +69,22 @@
     }
     else $GLOBALS['log']->d("table '$table' is empty");
     echo '</table>'.NL;
+  }
+  
+  function highlight($needle, $haystack) {
+    $pos = 0;
+    $before = '<span class="search-result">';
+    $after = '</span>';
+    while($pos < strlen($haystack)) {
+      // $GLOBALS['log']->d("hay: $haystack");
+      $pos = stripos($haystack, $needle, $pos);
+      if ($pos === false) break;
+      $haystack = substr_replace($haystack, $before, $pos, 0); // insert
+      $pos += strlen($before) + strlen($needle);
+      $haystack = substr_replace($haystack, $after, $pos, 0); // insert
+      $pos += strlen($after);
+    }
+    return $haystack;
   }
 
   require_once(INC_DIR.DS.'footer.html');
