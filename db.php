@@ -21,11 +21,11 @@
     }
   }
   else {
-    $log->i("showing '$table' table");
-	make_table($table);
+    $log->v("showing '$table' table");
+	  make_table($table);
   }
 
-  function make_table($table) {    
+  function make_table($table) {
 
     $fields = $GLOBALS['db']->get_column_names($table);
     if (empty($fields)) {
@@ -33,29 +33,36 @@
     }
 
     $sql = "SELECT * FROM `$table`";
-	if (!empty($GLOBALS['search'])) {
-		$sql .= " WHERE ";
-		$first = true;
-		foreach ($fields as $field) {
-			if (!$first) $sql .= " OR ";
-			else $first = false;
-			$sql .= "`$field` LIKE '%{$GLOBALS['search']}%'";
-		}
-	}
+    if (!empty($GLOBALS['search'])) {
+    	$sql .= " WHERE ";
+    	$first = true;
+    	foreach ($fields as $field) {
+    		if (!$first) $sql .= " OR ";
+    		else $first = false;
+    		$sql .= "`$field` LIKE '%{$GLOBALS['search']}%'";
+    	}
+    }
 
     $records = $GLOBALS['db']->query($sql);
 
-    echo '<h3>'.$table.'</h3>'.NL;
+    echo '<h3>'.$table.'</h3>';
+    if ($table == 'device') {
+      echo '<a href="edit.php">add new device</a><br />'.NL;
+    }
+    if ($table == 'mac') {
+      echo '<a href="edit.php">assign devices</a><br />'.NL;
+    }
     echo '<table border="1"><tr>'.NL;
     foreach ($fields as $field) {
       echo '<th>'.$field.'</th>'.NL;
     }
     echo '</tr>'.NL;
-    if (is_array($records)) {      
+    if (is_array($records)) {
       foreach ($records as $record) {
         echo '<tr>'.NL;
         foreach ($record as $item) {
-          echo '<td>'.str_replace($GLOBALS['search'], '<span class="search-result">'.$GLOBALS['search'].'</span>', $item).'</td>'.NL;
+          $item = str_replace($GLOBALS['search'], '<span class="search-result">'.$GLOBALS['search'].'</span>', $item);
+          echo '<td>'.$item.'</td>'.NL;
         }
         echo '</tr>'.NL;
       }

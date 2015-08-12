@@ -6,17 +6,16 @@
 	
 }
 
-.nav {	
-	float: left;	
+.nav {
+	float: left;
 }
 
-.text-logo {	
+.text-logo {
 	padding-right: 4px;
 	margin-right: 4px;
 	float: right;
-	font-size: 16pt;	
+	font-size: 10pt;
 }
-
 .text-logo a {
 	color: #607d8b;
 	text-decoration: none;
@@ -40,7 +39,7 @@
 }
 
 .search-result {
-	background-color: #ffd600;	
+	background-color: #ffd600;
 }
 
 #title {
